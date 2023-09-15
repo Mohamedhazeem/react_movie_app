@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { movieType } from "../api/fetchTypes.ts";
 import fetchTrendingMovies from "../api/fetchTrending.ts";
+import { Card } from "../components/Card.tsx";
 
 export const Home = () => {
   const [data, setData] = useState<movieType>();
@@ -16,16 +17,18 @@ export const Home = () => {
   return (
     <div>
       <button onClick={() => Check()}>CHECK</button>
-      {data?.results.map((data) => (
-        <>
-          <p>{data.title}</p>
-          <p>{data.id}</p>
-          <img
-            src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
-            alt=""
-          />
-        </>
-      ))}
+
+      <div className="flex flex-wrap gap-x-20 gap-y-10 justify-center">
+        {data?.results.map((data) => (
+          <>
+            <Card
+              title={data.title}
+              poster={data.poster_path}
+              date={data.release_date}
+            />
+          </>
+        ))}
+      </div>
     </div>
   );
 };

@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 export const Navbar = () => {
   const [searchText, setSearchText] = useState("");
   return (
-    <div className="flex flex-row justify-between p-5 bg-slate-500">
-      <p className="text-lg font-bold">Movies DB</p>
-      <div className="flex flex-row gap-4">
+    <div className="flex sm:flex-row flex-col sm:justify-between justify-center items-center p-5 bg-slate-500">
+      <p className="lg:text-lg font-bold">Movies DB</p>
+      <div className="flex sm:flex-row flex-col items-center sm:gap-4 gap-1">
         <input
           className="rounded-xl px-2 focus:outline-none border-neutral-800 border-2"
           type="search"
