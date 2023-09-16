@@ -4,6 +4,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Layout } from "./pages/Layout.tsx";
 import { Home } from "./pages/Home.tsx";
+import { Trending } from "./pages/Trending.tsx";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "/trending",
+        element: <Trending />,
       },
     ],
   },

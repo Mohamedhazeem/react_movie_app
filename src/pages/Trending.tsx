@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { movieType, seriesType } from "../api/fetchTypes.ts";
-import fetchPopularMovies from "../api/fetchPopularMovies.ts";
-import fetchPopularSeries from "../api/fetchPopularSeries.ts";
 import { CardCreate } from "../components/CardCreate.tsx";
+import {
+  fetchTrendingMovies,
+  fetchTrendingSeries,
+} from "../api/fetchTrending.ts";
 
-export const Home = () => {
-  const [popularMovie, setPopularMovie] = useState<movieType>();
-  const [popularSeries, setPopularSeries] = useState<seriesType>();
+export const Trending = () => {
+  const [trendingMovie, setTrendingMovie] = useState<movieType>();
+  const [trendingSeries, setTrendingSeries] = useState<seriesType>();
 
   useEffect(() => {
     PopularMovies();
@@ -14,16 +16,16 @@ export const Home = () => {
   }, []);
 
   function PopularMovies() {
-    fetchPopularMovies()
+    fetchTrendingMovies()
       .then((data: movieType) => {
-        setPopularMovie(data);
+        setTrendingMovie(data);
       })
       .catch((err) => console.error(err));
   }
   function PopularSeries() {
-    fetchPopularSeries()
+    fetchTrendingSeries()
       .then((data: seriesType) => {
-        setPopularSeries(data);
+        setTrendingSeries(data);
       })
       .catch((err) => console.error(err));
   }
@@ -31,13 +33,13 @@ export const Home = () => {
   return (
     <div>
       <p className="text-center text-3xl font-semibold text-orange-500">
-        POPULAR MOVIES
+        TRENDING MOVIES
       </p>
-      <CardCreate popularMovie={popularMovie} isSearchCard={false} />
+      <CardCreate popularMovie={trendingMovie} isSearchCard={false} />
       <p className="text-center text-3xl font-semibold text-orange-500">
-        POPULAR SERIES
+        TRENDING SERIES
       </p>
-      <CardCreate popularSeries={popularSeries} isSearchCard={false} />
+      <CardCreate popularSeries={trendingSeries} isSearchCard={false} />
     </div>
   );
 };

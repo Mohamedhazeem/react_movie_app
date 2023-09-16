@@ -18,7 +18,7 @@ export const Navbar = () => {
           }}
         ></input>
         <Link to={"/"}>Home</Link>
-        <Link to={"/"}>Trending</Link>
+        <Link to={"/trending"}>Trending</Link>
       </div>
     </div>
   );
