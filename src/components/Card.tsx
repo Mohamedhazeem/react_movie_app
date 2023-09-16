@@ -2,21 +2,37 @@ type cardData = {
   poster: string;
   title: string;
   date: string;
+  isSearchCard: boolean;
 };
 
-export const Card = ({ poster, title, date }: cardData) => {
+export const Card = ({ poster, title, date, isSearchCard }: cardData) => {
   return (
-    <div className="flex flex-col justify-center items-center w-32">
+    <div
+      className={`flex ${
+        isSearchCard
+          ? "flex-row items-center gap-4 min-w-[250px] max-w-[250px]"
+          : "flex-col justify-center items-center lg:w-48 md:w-40 w-32"
+      }  `}
+    >
       <img
         src={`https://image.tmdb.org/t/p/original${poster}`}
         alt={title}
-        className="h-auto w-full"
+        className={`${isSearchCard ? "w-12" : "h-auto w-full"} `}
       />
-
-      <p className="max-w-[60%] text-left whitespace-nowrap overflow-hidden text-ellipsis">
-        {title}
-      </p>
-      <p>{date.slice(0, 4)}</p>
+      <div
+        className={`${isSearchCard ? "flex flex-col" : "w-full text-center"}`}
+      >
+        <p
+          className={`${
+            isSearchCard
+              ? "w-full leading-none"
+              : "whitespace-nowrap overflow-hidden text-ellipsis"
+          } `}
+        >
+          {title}
+        </p>
+        <p>{date.slice(0, 4)}</p>
+      </div>
     </div>
   );
 };

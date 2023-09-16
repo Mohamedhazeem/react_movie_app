@@ -25,6 +25,7 @@ export const Home = () => {
               title={data.title}
               poster={data.poster_path}
               date={data.release_date}
+              isSearchCard={false}
             />
           </>
         ))}
