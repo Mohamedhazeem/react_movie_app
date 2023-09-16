@@ -14,14 +14,15 @@ export type movieType = {
         genre_ids: number[];
         popularity: number;
         release_date: string;
-        video: false;
+        video: boolean;
         vote_average: number;
         vote_count: number;
       }
     ];
-  };
-export type tvType = {
-    "page": 1,
+};
+
+export type seriesType = {
+    "page": number,
     "results": [
       {
         "adult": boolean,
@@ -39,4 +40,6 @@ export type tvType = {
         "vote_average": number,
         "vote_count": number,
         "origin_country": string[]
-      },]}
+      }
+    ];
+  };
