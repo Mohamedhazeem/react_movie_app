@@ -19,8 +19,7 @@ export const Navbar = () => {
           const filteredResults = data.results.filter(
             (search: searchResult) => {
               return (
-                (search.media_type === "movie" || search.media_type === "tv") &&
-                search.original_language === "en"
+                search.media_type === "movie" || search.media_type === "tv"
               );
             }
           );
