@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Layout } from "./pages/Layout.tsx";
 import { Home } from "./pages/Home.tsx";
 import { Trending } from "./pages/Trending.tsx";
+import { NotFound } from "./pages/NotFound.tsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "/trending",
         element: <Trending />,
+      },
+      {
+        path: "/not_found",
+        element: <NotFound />,
       },
     ],
   },
