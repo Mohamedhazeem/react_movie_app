@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { search } from "../api/search";
-import { searchType } from "../api/fetchTypes";
+import { searchResult, searchType } from "../api/fetchTypes";
 
 export const Navbar = () => {
   const [searchText, setSearchText] = useState("");
@@ -10,22 +10,32 @@ export const Navbar = () => {
   const navigate = useNavigate();
 
   const SearchData = () => {
-    const v = search(searchText);
-    console.log(v);
+    if (searchText == null) return;
+
     search(searchText)
       .then((data: searchType) => {
+        console.log(data.results.length);
         if (data.results.length > 0) {
-          data.results.map((search) => {
-            if (search.media_type == ("movie" || "tv")) {
-              setSearchData(data);
+          const filteredResults = data.results.filter(
+            (search: searchResult) => {
+              return (
+                (search.media_type === "movie" || search.media_type === "tv") &&
+                search.original_language === "en"
+              );
             }
-          });
+          );
+          console.log("running");
+          if (filteredResults.length > 0) {
+            setSearchData({ ...data, results: filteredResults });
+          } else {
+            navigate("/not_found");
+          }
         } else {
-          console.log("not_found");
           navigate("/not_found");
         }
       })
-      .catch((err) => console.error(err)); //need to add not found page
+      .catch((err) => console.error(err));
+    console.log(searchData);
   };
 
   return (
@@ -33,8 +43,8 @@ export const Navbar = () => {
       <p className="lg:text-lg font-bold">Movies DB</p>
       <div className="flex sm:flex-row flex-col items-center sm:gap-4 gap-1">
         <input
-          className="rounded-xl px-2 focus:outline-none border-neutral-800 border-2"
-          type="search"
+          className="appearance-none rounded-xl px-2 outline-none border-neutral-800 border-2"
+          type="text"
           placeholder="Quick Search"
           onChange={(e) => {
             setSearchText(e.target.value);
@@ -43,6 +53,8 @@ export const Navbar = () => {
           onKeyDown={(key) => {
             if (key.key == "Enter") {
               SearchData();
+              console.log(searchText);
+
               setSearchText("");
             }
           }}
