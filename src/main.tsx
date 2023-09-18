@@ -6,6 +6,7 @@ import { Layout } from "./pages/Layout.tsx";
 import { Home } from "./pages/Home.tsx";
 import { Trending } from "./pages/Trending.tsx";
 import { NotFound } from "./pages/NotFound.tsx";
+import { Searchresults } from "./pages/SearchResults.tsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/not_found",
         element: <NotFound />,
+      },
+      {
+        path: "/searchresults",
+        element: <Searchresults />,
       },
     ],
   },

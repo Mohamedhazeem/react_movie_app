@@ -5,16 +5,17 @@ import { searchResult, searchType } from "../api/fetchTypes";
 
 export const Navbar = () => {
   const [searchText, setSearchText] = useState("");
-  const [searchData, setSearchData] = useState<searchType>();
+  const [searchData, setSearchData] = useState<searchType | null>();
 
   const navigate = useNavigate();
 
   const SearchData = () => {
-    if (searchText == null) return;
-
+    if (searchText == null) {
+      setSearchData(null);
+      return;
+    }
     search(searchText)
       .then((data: searchType) => {
-        console.log(data.results.length);
         if (data.results.length > 0) {
           const filteredResults = data.results.filter(
             (search: searchResult) => {
@@ -23,9 +24,9 @@ export const Navbar = () => {
               );
             }
           );
-          console.log("running");
           if (filteredResults.length > 0) {
             setSearchData({ ...data, results: filteredResults });
+            navigate("/searchresults");
           } else {
             navigate("/not_found");
           }
@@ -34,7 +35,6 @@ export const Navbar = () => {
         }
       })
       .catch((err) => console.error(err));
-    console.log(searchData);
   };
 
   return (
@@ -52,8 +52,6 @@ export const Navbar = () => {
           onKeyDown={(key) => {
             if (key.key == "Enter") {
               SearchData();
-              console.log(searchText);
-
               setSearchText("");
             }
           }}
