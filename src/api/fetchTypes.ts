@@ -65,6 +65,6 @@ export type seriesType = {
   }
   
   export type searchType = {
-    page: number;
+    page?: number;
     results: searchResult[];
   }

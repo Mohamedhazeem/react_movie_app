@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { search } from "../api/search";
 import { searchResult, searchType } from "../api/fetchTypes";
 
@@ -38,27 +38,30 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="flex sm:flex-row flex-col sm:justify-between justify-center items-center p-5 bg-slate-500">
-      <p className="lg:text-lg font-bold">Movies DB</p>
-      <div className="flex sm:flex-row flex-col items-center sm:gap-4 gap-1">
-        <input
-          className="appearance-none rounded-xl px-2 outline-none border-neutral-800 border-2"
-          type="text"
-          placeholder="Quick Search"
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
-          value={searchText}
-          onKeyDown={(key) => {
-            if (key.key == "Enter") {
-              SearchData();
-              setSearchText("");
-            }
-          }}
-        ></input>
-        <Link to={"/"}>Home</Link>
-        <Link to={"/trending"}>Trending</Link>
+    <>
+      <div className="flex sm:flex-row flex-col sm:justify-between justify-center items-center p-5 bg-slate-500">
+        <p className="lg:text-lg font-bold">Movies DB</p>
+        <div className="flex sm:flex-row flex-col items-center sm:gap-4 gap-1">
+          <input
+            className="appearance-none rounded-xl px-2 outline-none border-neutral-800 border-2"
+            type="text"
+            placeholder="Quick Search"
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+            value={searchText}
+            onKeyDown={(key) => {
+              if (key.key == "Enter") {
+                SearchData();
+                setSearchText("");
+              }
+            }}
+          ></input>
+          <Link to={"/"}>Home</Link>
+          <Link to={"/trending"}>Trending</Link>
+        </div>
       </div>
-    </div>
+      <Outlet context={searchData} />
+    </>
   );
 };

@@ -1,14 +1,16 @@
-import { movieType, seriesType } from "../api/fetchTypes";
+import { movieType, searchResult, seriesType } from "../api/fetchTypes";
 import { Card } from "./Card";
 
 type cardCreateType = {
   popularMovie?: movieType;
   popularSeries?: seriesType;
+  searchType?: searchResult;
   isSearchCard: boolean;
 };
 export const CardCreate = ({
   popularMovie,
   popularSeries,
+  searchType,
   isSearchCard,
 }: cardCreateType) => {
   return (
@@ -33,6 +35,14 @@ export const CardCreate = ({
           />
         </>
       ))}
+      {searchType && (
+        <Card
+          title={searchType.name || searchType.title || ""}
+          poster={searchType.poster_path}
+          date={searchType.first_air_date || searchType.release_date || ""}
+          isSearchCard={isSearchCard}
+        />
+      )}
     </div>
   );
 };

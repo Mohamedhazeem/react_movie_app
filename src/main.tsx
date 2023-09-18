@@ -2,16 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Layout } from "./pages/Layout.tsx";
 import { Home } from "./pages/Home.tsx";
 import { Trending } from "./pages/Trending.tsx";
 import { NotFound } from "./pages/NotFound.tsx";
-import { Searchresults } from "./pages/SearchResults.tsx";
+import { SearchResults } from "./pages/SearchResults.tsx";
+import { Navbar } from "./components/Navbar.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <Navbar />,
     children: [
       {
         index: true,
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/searchresults",
-        element: <Searchresults />,
+        element: <SearchResults />,
       },
     ],
   },
