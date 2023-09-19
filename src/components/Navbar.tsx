@@ -5,13 +5,15 @@ import { searchResult, searchType } from "../api/fetchTypes";
 
 export const Navbar = () => {
   const [searchText, setSearchText] = useState("");
-  const [searchData, setSearchData] = useState<searchType | null>();
+  const [searchData, setSearchData] = useState<searchType | null>({
+    page: 0,
+    results: [],
+  });
 
   const navigate = useNavigate();
 
   const SearchData = () => {
     if (searchText == null) {
-      setSearchData(null);
       return;
     }
     search(searchText)
@@ -53,7 +55,6 @@ export const Navbar = () => {
             onKeyDown={(key) => {
               if (key.key == "Enter") {
                 SearchData();
-                setSearchText("");
               }
             }}
           ></input>

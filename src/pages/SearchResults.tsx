@@ -1,6 +1,6 @@
 import { useOutletContext } from "react-router";
 import { CardCreate } from "../components/CardCreate";
-import { movieType, searchType } from "../api/fetchTypes";
+import { searchType } from "../api/fetchTypes";
 
 export const SearchResults = () => {
   const data = useOutletContext<searchType>();

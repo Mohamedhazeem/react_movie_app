@@ -1,3 +1,4 @@
+import im from "../assets/not_found.jpg";
 type cardData = {
   poster: string;
   title: string;
@@ -15,8 +16,12 @@ export const Card = ({ poster, title, date, isSearchCard }: cardData) => {
       }  `}
     >
       <img
-        src={`https://image.tmdb.org/t/p/original${poster}`}
-        alt={title}
+        src={`${
+          poster != null
+            ? `https://image.tmdb.org/t/p/original${poster}`
+            : `${im}`
+        }`}
+        alt=""
         className={`${isSearchCard ? "w-12" : "h-auto w-full"} `}
       />
       <div
