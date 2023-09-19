@@ -17,16 +17,20 @@ export const SearchResults = () => {
       <p className="text-center text-3xl font-semibold text-orange-500">
         MOVIES
       </p>
-      {movie().map((result) => (
-        <CardCreate searchType={result} isSearchCard={false} />
-      ))}
+      <div className="flex flex-wrap my-9 gap-x-20 gap-y-10 justify-center">
+        {movie().map((result) => (
+          <CardCreate searchType={result} isSearchCard={false} />
+        ))}
+      </div>
 
       <p className="text-center text-3xl font-semibold text-orange-500">
         SERIES
       </p>
-      {tv().map((result) => (
-        <CardCreate searchType={result} isSearchCard={false} />
-      ))}
+      <div className="flex flex-wrap my-9 gap-x-20 gap-y-10 justify-center">
+        {tv().map((result) => (
+          <CardCreate searchType={result} isSearchCard={false} />
+        ))}
+      </div>
     </div>
   );
 };
