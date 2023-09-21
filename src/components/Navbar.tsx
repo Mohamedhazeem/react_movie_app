@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, Outlet, json, useNavigate } from "react-router-dom";
 import { search } from "../api/search";
 import { searchResult, searchType } from "../api/fetchTypes";
 
@@ -9,6 +9,19 @@ export const Navbar = () => {
     page: 0,
     results: [],
   });
+  useEffect(() => {
+    console.log("useEffect called");
+
+    const data = JSON.parse(
+      sessionStorage.getItem("search") || "{}"
+    ) as searchType;
+
+    console.log(data);
+    if (data.results && data.results.length > 0) {
+      setSearchData(data);
+    }
+    console.log(searchData);
+  }, []);
 
   const navigate = useNavigate();
 
@@ -28,6 +41,10 @@ export const Navbar = () => {
           );
           if (filteredResults.length > 0) {
             setSearchData({ ...data, results: filteredResults });
+            sessionStorage.setItem(
+              "search",
+              JSON.stringify({ ...data, results: filteredResults })
+            );
             navigate("/searchresults");
           } else {
             navigate("/not_found");
