@@ -7,6 +7,7 @@ import { Trending } from "./pages/Trending.tsx";
 import { NotFound } from "./pages/NotFound.tsx";
 import { SearchResults } from "./pages/SearchResults.tsx";
 import { Navbar } from "./components/Navbar.tsx";
+import { Details } from "./pages/Detail.tsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/searchresults",
         element: <SearchResults />,
+      },
+      {
+        path: "/details/:id",
+        element: <Details />,
       },
     ],
   },

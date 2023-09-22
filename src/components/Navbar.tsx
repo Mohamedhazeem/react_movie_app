@@ -10,17 +10,13 @@ export const Navbar = () => {
     results: [],
   });
   useEffect(() => {
-    console.log("useEffect called");
-
     const data = JSON.parse(
       sessionStorage.getItem("search") || "{}"
     ) as searchType;
 
-    console.log(data);
     if (data.results && data.results.length > 0) {
       setSearchData(data);
     }
-    console.log(searchData);
   }, []);
 
   const navigate = useNavigate();
@@ -41,6 +37,7 @@ export const Navbar = () => {
           );
           if (filteredResults.length > 0) {
             setSearchData({ ...data, results: filteredResults });
+            sessionStorage.clear();
             sessionStorage.setItem(
               "search",
               JSON.stringify({ ...data, results: filteredResults })
