@@ -1,14 +1,17 @@
-import im from "../assets/not_found.jpg";
+import not_found_image from "../assets/not_found.jpg";
+import { Link } from "react-router-dom";
 type cardData = {
+  id: number;
   poster: string;
   title: string;
   date: string;
   isSearchCard: boolean;
 };
 
-export const Card = ({ poster, title, date, isSearchCard }: cardData) => {
+export const Card = ({ poster, title, date, isSearchCard, id }: cardData) => {
   return (
-    <div
+    <Link
+      to={`/details/${id}`}
       className={`flex ${
         isSearchCard
           ? "flex-row items-center gap-4 min-w-[250px] max-w-[250px]"
@@ -19,7 +22,7 @@ export const Card = ({ poster, title, date, isSearchCard }: cardData) => {
         src={`${
           poster != null
             ? `https://image.tmdb.org/t/p/original${poster}`
-            : `${im}`
+            : `${not_found_image}`
         }`}
         alt=""
         className={`${isSearchCard ? "w-12" : "h-auto w-full"} `}
@@ -38,6 +41,6 @@ export const Card = ({ poster, title, date, isSearchCard }: cardData) => {
         </p>
         <p>{date.slice(0, 4)}</p>
       </div>
-    </div>
+    </Link>
   );
 };
