@@ -2,7 +2,6 @@ import { movieType, searchResult, seriesType } from "../api/fetchTypes";
 import { Card } from "./Card";
 
 type cardCreateType = {
-  id: number;
   popularMovie?: movieType;
   popularSeries?: seriesType;
   searchType?: searchResult;
@@ -20,6 +19,7 @@ export const CardCreate = ({
         <Card
           id={data.id}
           key={data.id}
+          mediaType={data.media_type || "movie"}
           title={data.title}
           poster={data.poster_path}
           date={data.release_date}
@@ -30,6 +30,7 @@ export const CardCreate = ({
         <Card
           id={data.id}
           key={data.id}
+          mediaType={data.media_type || "tv"}
           title={data.name}
           poster={data.poster_path}
           date={data.first_air_date}
@@ -40,6 +41,7 @@ export const CardCreate = ({
         <Card
           id={searchType.id}
           key={searchType.id}
+          mediaType={searchType.media_type}
           title={searchType.name || searchType.title || ""}
           poster={searchType.poster_path}
           date={searchType.first_air_date || searchType.release_date || ""}

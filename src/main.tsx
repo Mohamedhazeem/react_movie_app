@@ -31,7 +31,7 @@ const router = createBrowserRouter([
         element: <SearchResults />,
       },
       {
-        path: "/details/:id",
+        path: "/details/:mediaType/:id",
         element: <Details />,
       },
     ],
