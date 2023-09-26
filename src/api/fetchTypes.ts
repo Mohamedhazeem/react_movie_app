@@ -72,7 +72,7 @@ export type searchType = {
 export type details = {
   adult: boolean;
   backdrop_path: string;
-  belongs_to_collection: {
+  belongs_to_collection?: {
     id: number;
     name: string;
     poster_path: string;
@@ -85,11 +85,11 @@ export type details = {
       name: string;
     }
   ];
-  homepage: string; // url for movie homepage
+  homepage?: string; // url for movie homepage
   id: number;
   imdb_id: string; //https://www.imdb.com/title/tt10638522/?ref_=hm_top_tt_i_3
   original_language: string;
-  original_title: string;
+  original_title?: string;
   overview: string;
   popularity: number;
   poster_path: string;
@@ -98,10 +98,10 @@ export type details = {
   runtime: number;
   status: string;
   tagline: string;
-  title: string;
+  title?: string;
   video: boolean;
 
-  production_companies: [
+  production_companies?: [
     {
       id: number;
       name: string;
@@ -109,7 +109,7 @@ export type details = {
       origin_country: string;
     }
   ];
-  production_countries: [
+  production_countries?: [
     {
       iso_3166_1: string;
       name: string;
@@ -117,4 +117,30 @@ export type details = {
   ];
   vote_average: number;
   vote_count: number;
-}
+
+  origin_country?: [string];
+  original_name?: string;
+
+  first_air_date?: string;
+  name?: string;
+};
+
+export type creditType = {
+  id: number;
+  cast: [
+    {
+      adult: boolean;
+      gender: number;
+      id: number;
+      known_for_department: string;
+      name: string;
+      original_name: string;
+      popularity: number;
+      profile_path: string;
+      cast_id: number;
+      character: string;
+      credit_id: string;
+      order: number;
+    }
+  ];
+};
