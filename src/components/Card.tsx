@@ -5,7 +5,7 @@ type cardData = {
   mediaType: string;
   poster: string;
   title: string;
-  date: string;
+  date?: string;
   isSearchCard: boolean;
 };
 
@@ -47,7 +47,7 @@ export const Card = ({
         >
           {title}
         </p>
-        <p>{date.slice(0, 4)}</p>
+        <p>{date?.slice(0, 4)}</p>
       </div>
     </Link>
   );
