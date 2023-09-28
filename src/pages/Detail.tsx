@@ -10,6 +10,8 @@ import { creditType, details, searchType } from "../api/fetchTypes";
 import not_found_image from "../assets/not_found.jpg";
 import { SimilarCard } from "../components/SimilarCard";
 import { CastCredit } from "../components/CastCredit";
+import { OverviewAndCast } from "../components/OverviewAndCast";
+import { SimilarDetailsOverview } from "../components/SimilarDetailsOverview";
 
 export const Details = () => {
   const { mediaType, id } = useParams();
@@ -80,68 +82,20 @@ export const Details = () => {
             )}
           </div>
         </div>
-        <div className="lg:flex hidden flex-col ">
-          <p className="text-start font-semibold text-2xl text-yellow-200">{`SIMILAR ${
-            mediaType?.toLocaleUpperCase() || ""
-          }`}</p>
-          <div className="grid grid-cols-2 grid-rows-2 gap-3 pt-5 mb-16 items-center">
-            {similarDetails.results.map(
-              (result, index) =>
-                index < 4 && (
-                  <SimilarCard
-                    id={result.id}
-                    key={result.id}
-                    mediaType={mediaType!}
-                    title={result.name || result.title || ""}
-                    poster={result.poster_path}
-                    isSearchCard={false}
-                  />
-                )
-            )}
-          </div>
-        </div>
+        <SimilarDetailsOverview
+          screenType={"big"}
+          mediaType={mediaType!}
+          similarDetails={similarDetails}
+        />
       </section>
 
-      <section className="lg:px-36 px-10 py-10 text-justify ">
-        <div className="">
-          <p className="text-black font-bold underline text-xl">PLOT SUMMARY</p>
-          <p>{detail?.overview}</p>
-        </div>
-        <div>
-          <p className="font-bold text-xl py-5 text-yellow-200">CAST</p>
-          {credit?.cast.map(
-            (credit, index) =>
-              index < 4 && (
-                <CastCredit
-                  profile={credit.profile_path}
-                  name={credit.name}
-                  character={credit.character}
-                />
-              )
-          )}
-        </div>
-      </section>
+      <OverviewAndCast detail={detail!} credit={credit!} />
 
-      <div className="lg:hidden flex-col px-5">
-        <p className="font-semibold text-2xl text-yellow-200">{`SIMILAR ${
-          mediaType?.toLocaleUpperCase() || ""
-        }`}</p>
-        <div className="flex flex-row gap-10 pt-5">
-          {similarDetails.results.map(
-            (result, index) =>
-              index < 4 && (
-                <SimilarCard
-                  id={result.id}
-                  key={result.id}
-                  mediaType={mediaType!}
-                  title={result.name || result.title || ""}
-                  poster={result.poster_path}
-                  isSearchCard={false}
-                />
-              )
-          )}
-        </div>
-      </div>
+      <SimilarDetailsOverview
+        screenType={"small"}
+        mediaType={mediaType!}
+        similarDetails={similarDetails}
+      />
     </div>
   );
 };
