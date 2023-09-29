@@ -61,7 +61,6 @@ export const Details = () => {
   };
   mediaType == "movie" && getDetails("movie");
   mediaType == "tv" && getDetails("tv");
-
   return (
     <div className="w-full h-full bg-gray-500">
       <section className="flex md:flex-row flex-col pt-20 lg:pl-36 pl-10 ">
