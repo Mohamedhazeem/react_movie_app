@@ -55,7 +55,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <div className="flex sm:flex-row flex-col sm:justify-between justify-center items-center p-5 bg-slate-500">
+      <div className="flex sm:flex-row flex-col sm:justify-between justify-center items-center p-5 bg-cyan-800">
         <p className="lg:text-lg font-bold">Movies DB</p>
         <div className="flex sm:flex-row flex-col items-center sm:gap-4 gap-1">
           <input
