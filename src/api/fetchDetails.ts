@@ -1,5 +1,5 @@
 import axios from "axios";
-import { creditType, details, searchResult, searchType } from "./fetchTypes";
+import { creditType, details, reviewType, searchResult, searchType } from "./fetchTypes";
 
 
 export const BasicDetails =  (mediaType: string ,id: number) => {
@@ -36,4 +36,16 @@ export const BasicDetails =  (mediaType: string ,id: number) => {
       },
     };
     return axios.get<creditType>(url, options).then(response=> response.data);
+  };
+
+  export const ReviewDetails =  (mediaType: string ,id: number) => {
+    const url = mediaType == 'movie' ?
+      `https://api.themoviedb.org/3/movie/${id}/reviews?language=en-US&page=1` :  `https://api.themoviedb.org/3/tv/${id}/reviews?language=en-US&page=1`;
+    const options = {
+      headers: {
+        accept: "application/json",
+        Authorization: import.meta.env.VITE_AUTHORIZATION,
+      },
+    };
+    return axios.get<reviewType>(url, options).then(response=> response.data);
   };
